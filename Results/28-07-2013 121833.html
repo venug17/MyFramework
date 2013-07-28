@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<script type="text/javascript" src="jquery.js"> </script>
+
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+
+var dur_cnt = $('.dur_cnt').html();
+var i=1;
+
+$('#border1 tr').find('td.link').removeClass('up').addClass('dwn');
+$('#border1 tr.Header').show();
+$('#border1 tr.Header').siblings().hide();
+$('#border1 tr.Pass').show();
+$('#border1 tr.Fail').show();
+/*
+for(i=1;i<=dur_cnt;i++)
+{
+$('td.dur'+i+' span').html($('tr.dur'+i+' td').html());
+}
+*/
+$('td.sccnt1').html($('.dur_cnt').html());
+$('td.scpass1').html($('.scpass').html());
+$('td.scfail1').html($('.scfail').html());
+$('td.stime1').html($('.stime').html());
+$('td.etime1').html($('.etime').html());
+/*
+$('#border1 tr').click(function()
+{
+var class_name = $(this).next().attr('class');
+
+$('.'+class_name).slideToggle();
+
+}); */
+
+
+$('#border1 td.link').click(function()
+{
+var class_name = $(this).parent().next().attr('class');
+
+$('.'+class_name).slideToggle();
+
+if($(this).is('.up'))
+{
+$(this).removeClass('up').addClass('dwn');
+}
+else
+{
+$(this).removeClass('dwn').addClass('up');
+}
+
+
+});
+
+$('.select').change(function()
+{
+
+var val = $(this).val();
+
+if(val=='all')
+{
+$('#border1 tr').find('td.link').removeClass('dwn').addClass('up');
+$('#border1 tr').show();
+$('#border1 tr.durrow').hide();
+}
+else if(val=='call')
+{
+$('#border1 tr').find('td.link').removeClass('up').addClass('dwn');
+$('#border1 tr.Header').show();
+$('#border1 tr.Header').siblings().hide();
+$('#border1 tr.Pass').show();
+$('#border1 tr.Fail').show();
+}
+else
+{
+$('#border1 tr').find('td.link').removeClass('up').addClass('dwn');
+
+$('#border1 tr.Header').show();
+$('#border1 tr.Header').siblings().hide();
+$('#border1 tr.'+val).show();
+}
+});
+
+});
+
+</script>
+
+<style>
+
+.up{
+background:url("expand.jpeg") no-repeat scroll 30px 50% transparent;
+}
+
+.dwn{
+background:url("collapse.png") no-repeat scroll 30px 50% transparent;
+}
+
+td.link
+{
+cursor:pointer;
+}
+
+.durrow, .disphide
+{
+display:none;
+}
+
+.txtind
+{
+text-indent:50px;
+}
+
+</style>
+
+<title>Automation Execution Result Summary</title>
+<style type="text/css">
+<!--
+body {
+	background-color:#A8A8D5;
+	background-image:url('BG2.JPG');
+	background-repeat:repeat;
+}
+.style2 {color: #000000}
+.style3 {color: #086600}
+.style4 {color: #FF0000}
+#border1 {border: #000000 solid .05em;}
+#border1 td {border: #000000 solid .05em; }
+#border1 tr {border: #000000 solid .05em; }
+#summary {border: #000000 solid .05em;}
+#summary td {border: #000000 solid .05em; }
+#summary tr {border: #000000 solid .05em; }
+-->
+</style></head>
+
+<body>
+<!--div align = "center">
+<img src= "webapp1.png" alt ="Electronic Dealing Platform">
+</div-->
+<table align="center" cellpadding="0" cellspacing="0" width = "30%">
+<tr><td id = "summary" bordercolor="#5ECBFF" bgcolor="#A3A3A3" colspan = "2"><div align="center"><strong>Automation Test Summary</strong></div></td></tr>
+<tr id = "summary" class="Header"><td  bordercolor="#5ECBFF"><div class = "txtind"><strong>No of Scenarios</strong></div></td><td class ="sccnt1" align = "center"><strong>10</strong></td></tr>
+<tr id = "summary" class="Header"><td  bordercolor="#5ECBFF"><div class = "txtind"><strong>No of Scenarios Passed</strong></div></td><td class ="scpass1 style3" align = "center"><strong>N/A</strong></td></tr>
+<tr id = "summary" class="Header"><td  bordercolor="#5ECBFF"><div class = "txtind"><strong>No of Scenarios Failed</strong></div></td><td class ="scfail1 style4" align = "center"><strong>N/A</strong></td></tr>
+<tr id = "summary" class="Header"><td  bordercolor="#5ECBFF"><div class = "txtind"><strong>Test Execution Started at:</strong></div></td><td class ="stime1" align = "center"><strong>N/A</strong></td></tr>
+<tr id = "summary" class="Header"><td  bordercolor="#5ECBFF"><div class = "txtind"><strong>Test Execution Completed at:</strong></div></td><td class ="etime1" align = "center"><strong>N/A</strong></td></tr>
+</table>
+
+
+<p style="text-indent:800px;">
+<Strong>Please select your option</Strong> 
+<select class="select">
+
+<option value="call">Collapse</option>
+<option value="Pass">Pass</option>
+<option value="Fail">Fail</option>
+<option value="all">Expand</option>
+
+</select>
+
+</p>
+
+<table id="border1" align="center" cellpadding="0" cellspacing="0" width = "85%">
+
+	<tr class="Header" bgcolor="#CCCCCC" >
+	<td bordercolor="#5ECBFF" bgcolor="#A3A3A3"><div align="center"><strong>Sc.No</strong></div></td><td bordercolor="#5ECBFF" bgcolor="#A3A3A3"><div align="center"><strong>Steps</strong></div></td><td bordercolor="#5ECBFF" bgcolor="#A3A3A3"><div align="center"><strong>Expected</strong></div></td><td bordercolor="#5ECBFF" bgcolor="#A3A3A3"><div align="center"><strong>Actual</strong></div></td>
+	<td bordercolor="#5ECBFF" bgcolor="#A3A3A3"><div align="center"><strong>Result</strong></div></td>
+	<td bordercolor="#5ECBFF" bgcolor="#A3A3A3"><div align="center"><strong>Execution Time(in mins)</strong></div></td>
+	<td bordercolor="#5ECBFF" bgcolor="#A3A3A3"><strong>Show/Hide</strong></td>
+	</tr>
+  
+<tr class="Pass" align="center"><td><Strong>Tc_Id_001</Strong></td><td align="left" colspan = "3"><Strong>Book a Flight order</Strong></td>
+<td><Strong><span class="style3">Pass</span></Strong></td><td><span>1.78</span></Strong></td><td class="link up"></td></tr>
+<tr class="Tc_Id_001"><td rowspan = "25">&nbsp;</td><td>Launch the Application in IE</td><td>Application should opened in IE browser</td>
+<td>Mercury Tours Application launched in Internet Explorer successfuly</td><td rowspan = "25">&nbsp;</td><td rowspan = "25">&nbsp;</td><td rowspan = "25">&nbsp;</td></tr>
+<tr class="Tc_Id_001"><td>Enter Username</td><td>Username should be entered</td>
+<td>''test' entered in [UserName] textbox</td></tr>
+<tr class="Tc_Id_001"><td>Enter Password</td><td>Password should be entered</td>
+<td>''test' entered in [Password] textbox</td></tr>
+<tr class="Tc_Id_001"><td>Click Login button</td><td>User can able to click login button</td>
+<td>Clicked on [Login] 'Image'</td></tr>
+<tr class="Tc_Id_001"><td>Verify user logged in successfully</td><td>User should able to login without any issues</td>
+<td>Object [SIGN-OFF] is 'Exist'</td></tr>
+<tr class="Tc_Id_001"><td>Select the passenger count</td><td>User able to select the passenger</td>
+<td>'''2' is selected from "Passenger_Count</td></tr>
+<tr class="Tc_Id_001"><td>Select Departure</td><td>User able to select Departure</td>
+<td>'''New York' is selected from "Departure</td></tr>
+<tr class="Tc_Id_001"><td>Select Month</td><td>User able to select Month</td>
+<td>'''April' is selected from "D_Month</td></tr>
+<tr class="Tc_Id_001"><td>Select Date</td><td>User able to select Date</td>
+<td>'''30' is selected from "D_Day</td></tr>
+<tr class="Tc_Id_001"><td>Select Arrival</td><td>User able to select Arrival</td>
+<td>'''Sydney' is selected from "Arrival</td></tr>
+<tr class="Tc_Id_001"><td>Select Month</td><td>User able to select Month</td>
+<td>'''May' is selected from "A_Month</td></tr>
+<tr class="Tc_Id_001"><td>Select Date</td><td>User able to select Date</td>
+<td>'''25' is selected from "A_Day</td></tr>
+<tr class="Tc_Id_001"><td>Select preferred airlines</td><td>User able to select preferred airlines</td>
+<td><a href ="Images\Tc_Id_001_121932.PNG">'''Unified Airlines' is selected from "airline</a></td></tr>
+<tr class="Tc_Id_001"><td>Click continue button </td><td>User able to continue</td>
+<td><a href ="Images\Tc_Id_001_121941.PNG">Clicked on [Continue] 'Image'</a></td></tr>
+<tr class="Tc_Id_001"><td>Click continue button </td><td>User able to continue</td>
+<td>Clicked on [Continue] 'Image'</td></tr>
+<tr class="Tc_Id_001"><td>Verify the summary table</td><td>User able to view details entered previously </td>
+<td> New York to Sydney' is available in row[0] of the table.</td></tr>
+<tr class="Tc_Id_001"><td>Enter First name</td><td>User able to enter First name</td>
+<td>''James' entered in [Fname] textbox</td></tr>
+<tr class="Tc_Id_001"><td>Enter Last name</td><td>User able to enter Last name</td>
+<td>''Wong' entered in [Lname] textbox</td></tr>
+<tr class="Tc_Id_001"><td>Enter First name</td><td>User able to enter First name</td>
+<td>''Sandy' entered in [Fname1] textbox</td></tr>
+<tr class="Tc_Id_001"><td>Enter Last name</td><td>User able to enter Last name</td>
+<td>''Woo' entered in [Lname1] textbox</td></tr>
+<tr class="Tc_Id_001"><td>Enter Card number</td><td>User able to enter Card number</td>
+<td><a href ="Images\Tc_Id_001_122000.PNG">''1254637281' entered in [CDNumber] textbox</a></td></tr>
+<tr class="Tc_Id_001"><td>Click on Secure connection button</td><td>User able to click on Secure connection button</td>
+<td>Clicked on [Buy_Flights] 'Image'</td></tr>
+<tr class="Tc_Id_001"><td>Verify the flight confirmation table</td><td>User able to view details entered previously </td>
+<td> New York to Sydney' is available in row[2] of the table.</td></tr>
+<tr class="Tc_Id_001"><td>Verify the flight confirmation table</td><td>User able to view details entered previously </td>
+<td><a href ="Images\Tc_Id_001_122013.PNG"> Sydney to New York' is available in row[4] of the table.</a></td></tr>
+<tr class="Tc_Id_001"><td>Click on the Logout button</td><td>User able to click logout button</td>
+<td>Clicked on [Logout] 'Image'</td></tr>
+</table>
+<span class="dur_cnt disphide">1</span><!-- This should be Scenario count Parameter-->
+<span class="scpass disphide">1</span><!-- This should be Scenario pass count Parameter-->
+<span class="scfail disphide">0</span><!-- This should be Scenario fail count Parameter-->
+<span class="stime disphide">12:18:33</span><!-- This should be Scenario start time Parameter-->
+<span class="etime disphide">12:20:22</span><!-- This should be Scenario end time Parameter-->
